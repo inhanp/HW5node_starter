@@ -19,7 +19,6 @@ function authenticate(req, res, next) {
 }
 
 function getAllUsers(req, res, next) {
-    console.log("getAll", req.user.sub);
     userService.getAllUsers()
         .then(users => res.json(users))
         .catch(err => next(err));

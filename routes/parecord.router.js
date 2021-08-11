@@ -9,6 +9,8 @@ router.post('/addparecord', parecordController.createPArecord);
 router.get('/getparecords', parecordController.getPArecords);
 router.delete('/:date',authorize(Role.admin), parecordController.deletePArecord);
 router.post('/editparecord/', parecordController.editPArecord);
+router.post('/addparecord/', parecordController.createPArecord);
+router.get('/getaverages/:username', parecordController.averagePArecord);
 
 
 module.exports = router;

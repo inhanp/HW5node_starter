@@ -4,7 +4,8 @@ module.exports = {
     createPArecord,
     getPArecords,
     deletePArecord,
-    editPArecord
+    editPArecord,
+    averagePArecord
 };
 
 
@@ -17,7 +18,7 @@ function createPArecord(req, res, next) {
 
 function getPArecords(req,res,next){
 // return all parecords from the database and send to the client.
-    parecordService.getAllPArecords().then(paracords => res.json(paracords)).catch(err => next(err))
+    parecordService.getAllPArecords(req.user.sub).then(paracords => res.json(paracords)).catch(err => next(err))
 }
 
 
@@ -29,4 +30,8 @@ function deletePArecord(req,res,next){
 
 function editPArecord(req, res, next) {
     parecordService.editPArecord(req.body, req.user.sub).then(parecord => res.json(parecord)).catch(err => next(err))
+}
+
+function averagePArecord(req, res, next) {
+    parecordService.averagePArecord(req.params.username).then(averages => res.json(averages)).catch(err => next(err))
 }
